@@ -6,7 +6,7 @@ from ouc_course_tool.core.course_fetcher import CourseFetcher
 from ouc_course_tool.data import FetcherParams
 
 
-class MyTestCase(unittest.TestCase):
+class TestCourseFechter(unittest.TestCase):
     _COOKIE = "JSESSIONID=" + "F1072C84F4778E07E81A0EA90ED123FB"
     _QUERY_PARAM = FetcherParams(
         initQry=0, xktype=2, xh="[USERNAME]", xn="2024", xq=0, nj="2022", zydm="0143",
@@ -22,7 +22,7 @@ class MyTestCase(unittest.TestCase):
         for course in courses:
             print(course)
 
-    _TEST_FILE = "test_course_result.html"
+    _TEST_FILE = "test_resource/test_course_result.html"
     def test_html_raw_handle(self):
         with open(self._TEST_FILE, 'r', encoding='utf-8') as file:
             raw_html = file.read()
