@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.01 Transitional//EN">
+<html>
+<head>
+    <title>数据列表</title>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <link rel="stylesheet" href="../themes/classical/css/blue/blue_DataTable.css" type="text/css"/>
+    <script type="text/javascript" src="./js/ind_DataTable.js"></script>
+</head>
+<script language="JavaScript" type="text/JavaScript">
+    function setRowFixed(RowIndex) {
+        var e = event.srcElement;
+        if (e.tagName != 'DIV') return;
+        var oTab = e.children(0);
+        var iTop = e.scrollTop;
+        var iBor = parseInt(oTab.border);
+        if (typeof (RowIndex) != 'number' || RowIndex < 0) RowIndex = 0;
+        oTab.rows(RowIndex).style.left = -iBor;
+        oTab.rows(RowIndex).style.top = iTop - iBor;
+    }
+</script>
+<body leftmargin="0" topmargin="0" oncontextmenu="return true;">
+
+<div onscroll='setRowFixed(this)' class='datalist' style='OVERFLOW: auto; height:93%;width:100%;'>
+    <table width='100%' border="1" cellpadding='0' style="BORDER-COLLAPSE: collapse">
+        <thead>
+        <tr class='H' style='POSITION: relative'>
+            <td width='6%' id='head_curent_skbjdm'>选课号</td>
+            <td width='19%' id='head_kc'>课程</td>
+            <td width='6%' id='head_xqmc'>开课校区</td>
+            <td style='display:none;' id='head_cddw'>承担单位</td>
+            <td width='4%' id='head_skfs'>授课<br>方式</td>
+            <td width='8%' id='head_rkjs'>任课教师</td>
+            <td width='4%' id='head_qsz'>起始周</td>
+            <td width='3%' id='head_xf'>学分</td>
+            <td width='4%' id='head_zongxs'>总学时</td>
+            <td width='4%' id='head_xkrssx'>限选<br>人数</td>
+            <td width='4%' id='head_xkrs'>已选<br>人数</td>
+            <td width='4%' id='head_qdrs'>确定<br>人数</td>
+            <td width='14%' id='head_sksj'>上课时间</td>
+            <td width='6%' id='head_skdd'>上课地点</td>
+            <td width='6%' id='head_jxdg'>教学<br>大纲</td>
+            <td width='3%' id='head_jxrl'>教学<br>日历</td>
+            <td style='display:none;' id='head_syjx'>双语<br>教学</td>
+            <td style='display:none;' id='head_jpkc'>精品<br>课程</td>
+            <td width='5%' id='head_bz'>备注</td>
+            <td style='display:none;' id='head_skbjdm'>选课号</td>
+            <td style='display:none;' id='head_skfs_m'>授课方式</td>
+            <td style='display:none;' id='head_xqdm'>校区代码</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class='O' id='tr0' onclick='sglSelectedTr(this)'>
+            <td id='tr0_curent_skbjdm' name='curent_skbjdm' align='center'>08001021</td>
+            <td id='tr0_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                      onclick='parent.showCourseInfo("999101306118")'>[100101301992]大学生职业发展教育Ⅱ</a>
+            </td>
+            <td id='tr0_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr0_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr0_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr0_rkjs' name='rkjs' align='left'>王晓菲</td>
+            <td id='tr0_qsz' name='qsz' align='left'>1-2</td>
+            <td id='tr0_xf' name='xf' align='right'>0.5</td>
+            <td id='tr0_zongxs' name='zongxs' align='right'>8</td>
+            <td id='tr0_xkrssx' name='xkrssx' align='right'>105</td>
+            <td id='tr0_xkrs' name='xkrs' align='right'>91</td>
+            <td id='tr0_qdrs' name='qdrs' align='right'>92</td>
+            <td id='tr0_sksj' name='sksj' align='left'>1-2周 五(1-4节)</td>
+            <td id='tr0_skdd' name='skdd' align='left'>0201</td>
+            <td id='tr0_jxdg' name='jxdg' align='center'></td>
+            <td id='tr0_jxrl' name='jxrl' align='center'></td>
+            <td id='tr0_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr0_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr0_bz' name='bz' align='left'></td>
+            <td id='tr0_skbjdm' name='skbjdm' style='display:none;'>08001021</td>
+            <td id='tr0_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr0_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr1' onclick='sglSelectedTr(this)'>
+            <td id='tr1_curent_skbjdm' name='curent_skbjdm' align='center'>08001027</td>
+            <td id='tr1_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                      onclick='parent.showCourseInfo("999101306831")'>[100103201322]药学与交叉学科创新系列研讨课程12</a>
+            </td>
+            <td id='tr1_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr1_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr1_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr1_rkjs' name='rkjs' align='left'>刘军</td>
+            <td id='tr1_qsz' name='qsz' align='left'>1-4</td>
+            <td id='tr1_xf' name='xf' align='right'>1.0</td>
+            <td id='tr1_zongxs' name='zongxs' align='right'>16</td>
+            <td id='tr1_xkrssx' name='xkrssx' align='right'>15</td>
+            <td id='tr1_xkrs' name='xkrs' align='right'>17</td>
+            <td id='tr1_qdrs' name='qdrs' align='right'>18</td>
+            <td id='tr1_sksj' name='sksj' align='left'>1-4周 二(5-6节)</td>
+            <td id='tr1_skdd' name='skdd' align='left'>0402</td>
+            <td id='tr1_jxdg' name='jxdg' align='center'></td>
+            <td id='tr1_jxrl' name='jxrl' align='center'></td>
+            <td id='tr1_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr1_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr1_bz' name='bz' align='left'></td>
+            <td id='tr1_skbjdm' name='skbjdm' style='display:none;'>08001027</td>
+            <td id='tr1_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr1_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr2' onclick='sglSelectedTr(this)'>
+            <td id='tr2_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr2_kc' name='kc' align='left'></td>
+            <td id='tr2_xqmc' name='xqmc' align='center'></td>
+            <td id='tr2_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr2_skfs' name='skfs' align='center'></td>
+            <td id='tr2_rkjs' name='rkjs' align='left'></td>
+            <td id='tr2_qsz' name='qsz' align='left'></td>
+            <td id='tr2_xf' name='xf' align='right'></td>
+            <td id='tr2_zongxs' name='zongxs' align='right'></td>
+            <td id='tr2_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr2_xkrs' name='xkrs' align='right'></td>
+            <td id='tr2_qdrs' name='qdrs' align='right'></td>
+            <td id='tr2_sksj' name='sksj' align='left'>1-4周 四(5-6节)</td>
+            <td id='tr2_skdd' name='skdd' align='left'>0402</td>
+            <td id='tr2_jxdg' name='jxdg' align='center'></td>
+            <td id='tr2_jxrl' name='jxrl' align='center'></td>
+            <td id='tr2_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr2_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr2_bz' name='bz' align='left'></td>
+            <td id='tr2_skbjdm' name='skbjdm' style='display:none;'>08001027</td>
+            <td id='tr2_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr2_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr3' onclick='sglSelectedTr(this)'>
+            <td id='tr3_curent_skbjdm' name='curent_skbjdm' align='center'>08001023</td>
+            <td id='tr3_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                      onclick='parent.showCourseInfo("999101306531")'>[100103201331]国际课程-糖化学生物学</a>
+            </td>
+            <td id='tr3_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr3_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr3_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr3_rkjs' name='rkjs' align='left'>李春霞</td>
+            <td id='tr3_qsz' name='qsz' align='left'>3-3</td>
+            <td id='tr3_xf' name='xf' align='right'>1.0</td>
+            <td id='tr3_zongxs' name='zongxs' align='right'>16</td>
+            <td id='tr3_xkrssx' name='xkrssx' align='right'>60</td>
+            <td id='tr3_xkrs' name='xkrs' align='right'>18</td>
+            <td id='tr3_qdrs' name='qdrs' align='right'>20</td>
+            <td id='tr3_sksj' name='sksj' align='left'>3-3周 一(1-4节)</td>
+            <td id='tr3_skdd' name='skdd' align='left'>0201</td>
+            <td id='tr3_jxdg' name='jxdg' align='center'></td>
+            <td id='tr3_jxrl' name='jxrl' align='center'></td>
+            <td id='tr3_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr3_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr3_bz' name='bz' align='left'></td>
+            <td id='tr3_skbjdm' name='skbjdm' style='display:none;'>08001023</td>
+            <td id='tr3_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr3_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr4' onclick='sglSelectedTr(this)'>
+            <td id='tr4_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr4_kc' name='kc' align='left'></td>
+            <td id='tr4_xqmc' name='xqmc' align='center'></td>
+            <td id='tr4_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr4_skfs' name='skfs' align='center'></td>
+            <td id='tr4_rkjs' name='rkjs' align='left'></td>
+            <td id='tr4_qsz' name='qsz' align='left'></td>
+            <td id='tr4_xf' name='xf' align='right'></td>
+            <td id='tr4_zongxs' name='zongxs' align='right'></td>
+            <td id='tr4_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr4_xkrs' name='xkrs' align='right'></td>
+            <td id='tr4_qdrs' name='qdrs' align='right'></td>
+            <td id='tr4_sksj' name='sksj' align='left'>3-3周 二(1-4节)</td>
+            <td id='tr4_skdd' name='skdd' align='left'>0201</td>
+            <td id='tr4_jxdg' name='jxdg' align='center'></td>
+            <td id='tr4_jxrl' name='jxrl' align='center'></td>
+            <td id='tr4_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr4_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr4_bz' name='bz' align='left'></td>
+            <td id='tr4_skbjdm' name='skbjdm' style='display:none;'>08001023</td>
+            <td id='tr4_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr4_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr5' onclick='sglSelectedTr(this)'>
+            <td id='tr5_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr5_kc' name='kc' align='left'></td>
+            <td id='tr5_xqmc' name='xqmc' align='center'></td>
+            <td id='tr5_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr5_skfs' name='skfs' align='center'></td>
+            <td id='tr5_rkjs' name='rkjs' align='left'></td>
+            <td id='tr5_qsz' name='qsz' align='left'></td>
+            <td id='tr5_xf' name='xf' align='right'></td>
+            <td id='tr5_zongxs' name='zongxs' align='right'></td>
+            <td id='tr5_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr5_xkrs' name='xkrs' align='right'></td>
+            <td id='tr5_qdrs' name='qdrs' align='right'></td>
+            <td id='tr5_sksj' name='sksj' align='left'>3-3周 三(1-4节)</td>
+            <td id='tr5_skdd' name='skdd' align='left'>0201</td>
+            <td id='tr5_jxdg' name='jxdg' align='center'></td>
+            <td id='tr5_jxrl' name='jxrl' align='center'></td>
+            <td id='tr5_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr5_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr5_bz' name='bz' align='left'></td>
+            <td id='tr5_skbjdm' name='skbjdm' style='display:none;'>08001023</td>
+            <td id='tr5_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr5_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr6' onclick='sglSelectedTr(this)'>
+            <td id='tr6_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr6_kc' name='kc' align='left'></td>
+            <td id='tr6_xqmc' name='xqmc' align='center'></td>
+            <td id='tr6_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr6_skfs' name='skfs' align='center'></td>
+            <td id='tr6_rkjs' name='rkjs' align='left'></td>
+            <td id='tr6_qsz' name='qsz' align='left'></td>
+            <td id='tr6_xf' name='xf' align='right'></td>
+            <td id='tr6_zongxs' name='zongxs' align='right'></td>
+            <td id='tr6_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr6_xkrs' name='xkrs' align='right'></td>
+            <td id='tr6_qdrs' name='qdrs' align='right'></td>
+            <td id='tr6_sksj' name='sksj' align='left'>3-3周 四(1-4节)</td>
+            <td id='tr6_skdd' name='skdd' align='left'>0201</td>
+            <td id='tr6_jxdg' name='jxdg' align='center'></td>
+            <td id='tr6_jxrl' name='jxrl' align='center'></td>
+            <td id='tr6_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr6_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr6_bz' name='bz' align='left'></td>
+            <td id='tr6_skbjdm' name='skbjdm' style='display:none;'>08001023</td>
+            <td id='tr6_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr6_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr7' onclick='sglSelectedTr(this)'>
+            <td id='tr7_curent_skbjdm' name='curent_skbjdm' align='center'>08001022</td>
+            <td id='tr7_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                      onclick='parent.showCourseInfo("999101306532")'>[100103201333]国际课程-基因工程技术</a>
+            </td>
+            <td id='tr7_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr7_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr7_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr7_rkjs' name='rkjs' align='left'>张国建</td>
+            <td id='tr7_qsz' name='qsz' align='left'>1-2</td>
+            <td id='tr7_xf' name='xf' align='right'>1.0</td>
+            <td id='tr7_zongxs' name='zongxs' align='right'>16</td>
+            <td id='tr7_xkrssx' name='xkrssx' align='right'>60</td>
+            <td id='tr7_xkrs' name='xkrs' align='right'>52</td>
+            <td id='tr7_qdrs' name='qdrs' align='right'>56</td>
+            <td id='tr7_sksj' name='sksj' align='left'>1-2周 二(10-11节)</td>
+            <td id='tr7_skdd' name='skdd' align='left'>0101</td>
+            <td id='tr7_jxdg' name='jxdg' align='center'></td>
+            <td id='tr7_jxrl' name='jxrl' align='center'></td>
+            <td id='tr7_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr7_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr7_bz' name='bz' align='left'><font title='根据外教时间另行调整'>根据外教时间另行调整</font></td>
+            <td id='tr7_skbjdm' name='skbjdm' style='display:none;'>08001022</td>
+            <td id='tr7_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr7_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr8' onclick='sglSelectedTr(this)'>
+            <td id='tr8_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr8_kc' name='kc' align='left'></td>
+            <td id='tr8_xqmc' name='xqmc' align='center'></td>
+            <td id='tr8_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr8_skfs' name='skfs' align='center'></td>
+            <td id='tr8_rkjs' name='rkjs' align='left'></td>
+            <td id='tr8_qsz' name='qsz' align='left'></td>
+            <td id='tr8_xf' name='xf' align='right'></td>
+            <td id='tr8_zongxs' name='zongxs' align='right'></td>
+            <td id='tr8_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr8_xkrs' name='xkrs' align='right'></td>
+            <td id='tr8_qdrs' name='qdrs' align='right'></td>
+            <td id='tr8_sksj' name='sksj' align='left'>1-2周 四(10-11节)</td>
+            <td id='tr8_skdd' name='skdd' align='left'>0101</td>
+            <td id='tr8_jxdg' name='jxdg' align='center'></td>
+            <td id='tr8_jxrl' name='jxrl' align='center'></td>
+            <td id='tr8_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr8_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr8_bz' name='bz' align='left'></td>
+            <td id='tr8_skbjdm' name='skbjdm' style='display:none;'>08001022</td>
+            <td id='tr8_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr8_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr9' onclick='sglSelectedTr(this)'>
+            <td id='tr9_curent_skbjdm' name='curent_skbjdm' align='center'>08001024</td>
+            <td id='tr9_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                      onclick='parent.showCourseInfo("999101307073")'>[100103201339]国际课程-先进表征技术在药物和生物材料研究中的应用</a>
+            </td>
+            <td id='tr9_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr9_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr9_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr9_rkjs' name='rkjs' align='left'>姜帅</td>
+            <td id='tr9_qsz' name='qsz' align='left'>1-2</td>
+            <td id='tr9_xf' name='xf' align='right'>1.0</td>
+            <td id='tr9_zongxs' name='zongxs' align='right'>16</td>
+            <td id='tr9_xkrssx' name='xkrssx' align='right'>50</td>
+            <td id='tr9_xkrs' name='xkrs' align='right'>40</td>
+            <td id='tr9_qdrs' name='qdrs' align='right'>40</td>
+            <td id='tr9_sksj' name='sksj' align='left'>1-2周 一(3-4节)</td>
+            <td id='tr9_skdd' name='skdd' align='left'>0202</td>
+            <td id='tr9_jxdg' name='jxdg' align='center'></td>
+            <td id='tr9_jxrl' name='jxrl' align='center'></td>
+            <td id='tr9_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr9_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr9_bz' name='bz' align='left'></td>
+            <td id='tr9_skbjdm' name='skbjdm' style='display:none;'>08001024</td>
+            <td id='tr9_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr9_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr10' onclick='sglSelectedTr(this)'>
+            <td id='tr10_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr10_kc' name='kc' align='left'></td>
+            <td id='tr10_xqmc' name='xqmc' align='center'></td>
+            <td id='tr10_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr10_skfs' name='skfs' align='center'></td>
+            <td id='tr10_rkjs' name='rkjs' align='left'></td>
+            <td id='tr10_qsz' name='qsz' align='left'></td>
+            <td id='tr10_xf' name='xf' align='right'></td>
+            <td id='tr10_zongxs' name='zongxs' align='right'></td>
+            <td id='tr10_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr10_xkrs' name='xkrs' align='right'></td>
+            <td id='tr10_qdrs' name='qdrs' align='right'></td>
+            <td id='tr10_sksj' name='sksj' align='left'>1-2周 二(3-4节)</td>
+            <td id='tr10_skdd' name='skdd' align='left'>0202</td>
+            <td id='tr10_jxdg' name='jxdg' align='center'></td>
+            <td id='tr10_jxrl' name='jxrl' align='center'></td>
+            <td id='tr10_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr10_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr10_bz' name='bz' align='left'></td>
+            <td id='tr10_skbjdm' name='skbjdm' style='display:none;'>08001024</td>
+            <td id='tr10_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr10_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr11' onclick='sglSelectedTr(this)'>
+            <td id='tr11_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr11_kc' name='kc' align='left'></td>
+            <td id='tr11_xqmc' name='xqmc' align='center'></td>
+            <td id='tr11_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr11_skfs' name='skfs' align='center'></td>
+            <td id='tr11_rkjs' name='rkjs' align='left'></td>
+            <td id='tr11_qsz' name='qsz' align='left'></td>
+            <td id='tr11_xf' name='xf' align='right'></td>
+            <td id='tr11_zongxs' name='zongxs' align='right'></td>
+            <td id='tr11_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr11_xkrs' name='xkrs' align='right'></td>
+            <td id='tr11_qdrs' name='qdrs' align='right'></td>
+            <td id='tr11_sksj' name='sksj' align='left'>1-2周 三(3-4节)</td>
+            <td id='tr11_skdd' name='skdd' align='left'>0202</td>
+            <td id='tr11_jxdg' name='jxdg' align='center'></td>
+            <td id='tr11_jxrl' name='jxrl' align='center'></td>
+            <td id='tr11_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr11_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr11_bz' name='bz' align='left'></td>
+            <td id='tr11_skbjdm' name='skbjdm' style='display:none;'>08001024</td>
+            <td id='tr11_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr11_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr12' onclick='sglSelectedTr(this)'>
+            <td id='tr12_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr12_kc' name='kc' align='left'></td>
+            <td id='tr12_xqmc' name='xqmc' align='center'></td>
+            <td id='tr12_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr12_skfs' name='skfs' align='center'></td>
+            <td id='tr12_rkjs' name='rkjs' align='left'></td>
+            <td id='tr12_qsz' name='qsz' align='left'></td>
+            <td id='tr12_xf' name='xf' align='right'></td>
+            <td id='tr12_zongxs' name='zongxs' align='right'></td>
+            <td id='tr12_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr12_xkrs' name='xkrs' align='right'></td>
+            <td id='tr12_qdrs' name='qdrs' align='right'></td>
+            <td id='tr12_sksj' name='sksj' align='left'>1-2周 四(3-4节)</td>
+            <td id='tr12_skdd' name='skdd' align='left'>0202</td>
+            <td id='tr12_jxdg' name='jxdg' align='center'></td>
+            <td id='tr12_jxrl' name='jxrl' align='center'></td>
+            <td id='tr12_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr12_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr12_bz' name='bz' align='left'></td>
+            <td id='tr12_skbjdm' name='skbjdm' style='display:none;'>08001024</td>
+            <td id='tr12_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr12_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='E' id='tr13' onclick='sglSelectedTr(this)'>
+            <td id='tr13_curent_skbjdm' name='curent_skbjdm' align='center'>08001033</td>
+            <td id='tr13_kc' name='kc' align='left'><a href='javascript:void(0)'
+                                                       onclick='parent.showCourseInfo("999101307078")'>[100103202305]药学仪器分析实验</a>
+            </td>
+            <td id='tr13_xqmc' name='xqmc' align='center'>鱼山校区</td>
+            <td id='tr13_cddw' name='cddw' style='display:none;'>药学系</td>
+            <td id='tr13_skfs' name='skfs' align='center'>讲授</td>
+            <td id='tr13_rkjs' name='rkjs' align='left'>邱雪</td>
+            <td id='tr13_qsz' name='qsz' align='left'>1-4</td>
+            <td id='tr13_xf' name='xf' align='right'>1.0</td>
+            <td id='tr13_zongxs' name='zongxs' align='right'>32</td>
+            <td id='tr13_xkrssx' name='xkrssx' align='right'>20</td>
+            <td id='tr13_xkrs' name='xkrs' align='right'>19</td>
+            <td id='tr13_qdrs' name='qdrs' align='right'>20</td>
+            <td id='tr13_sksj' name='sksj' align='left'>1-4周 二(5-8节)</td>
+            <td id='tr13_skdd' name='skdd' align='left'></td>
+            <td id='tr13_jxdg' name='jxdg' align='center'></td>
+            <td id='tr13_jxrl' name='jxrl' align='center'></td>
+            <td id='tr13_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr13_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr13_bz' name='bz' align='left'><font title='上课地点待定'>上课地点待定</font></td>
+            <td id='tr13_skbjdm' name='skbjdm' style='display:none;'>08001033</td>
+            <td id='tr13_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr13_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <tr class='O' id='tr14' onclick='sglSelectedTr(this)'>
+            <td id='tr14_curent_skbjdm' name='curent_skbjdm' align='center'></td>
+            <td id='tr14_kc' name='kc' align='left'></td>
+            <td id='tr14_xqmc' name='xqmc' align='center'></td>
+            <td id='tr14_cddw' name='cddw' style='display:none;'></td>
+            <td id='tr14_skfs' name='skfs' align='center'></td>
+            <td id='tr14_rkjs' name='rkjs' align='left'></td>
+            <td id='tr14_qsz' name='qsz' align='left'></td>
+            <td id='tr14_xf' name='xf' align='right'></td>
+            <td id='tr14_zongxs' name='zongxs' align='right'></td>
+            <td id='tr14_xkrssx' name='xkrssx' align='right'></td>
+            <td id='tr14_xkrs' name='xkrs' align='right'></td>
+            <td id='tr14_qdrs' name='qdrs' align='right'></td>
+            <td id='tr14_sksj' name='sksj' align='left'>1-4周 五(5-8节)</td>
+            <td id='tr14_skdd' name='skdd' align='left'></td>
+            <td id='tr14_jxdg' name='jxdg' align='center'></td>
+            <td id='tr14_jxrl' name='jxrl' align='center'></td>
+            <td id='tr14_syjx' name='syjx' style='display:none;'></td>
+            <td id='tr14_jpkc' name='jpkc' style='display:none;'></td>
+            <td id='tr14_bz' name='bz' align='left'><font title='上课地点待定'>上课地点待定</font></td>
+            <td id='tr14_skbjdm' name='skbjdm' style='display:none;'>08001033</td>
+            <td id='tr14_skfs_m' name='skfs_m' style='display:none;'>0</td>
+            <td id='tr14_xqdm' name='xqdm' style='display:none;'>0</td>
+        </tr>
+        <input type=hidden pivColor='Noting' pivFontColor='Noting' valueId='' id='pivRow' value=''></tbody>
+        <script language='javascript'>try {
+            parent.showTotalRecord('6146', '15');
+        } catch (e) {
+        }</script>
+    </table>
+</div>
+<div class='pagination'>
+    <script language='javascript'>drawPanigator();</script>
+    <script language='javascript'>reloadPage('/taglib/DataTable.jsp', 1, 1);</script>
+</div>
+<form name='kingo_ui_datatable_form' id='kingo_ui_datatable_form' method='post'><input type='hidden' name='sel_nj'
+                                                                                       value='2022'/><input
+        type='hidden' name='initQry' value='0'/><input type='hidden' name='sel_kc'/><input type='hidden' name='xnxq'
+                                                                                           value='2024-0'/><input
+        type='hidden' name='sel_schoolarea'/><input type='hidden' name='sel_zydm' value='0143'/><input type='hidden'
+                                                                                                       name='zydm'
+                                                                                                       value='0143'/><input
+        type='hidden' name='tableId' value='6146'/><input type='hidden' name='items'/><input type='hidden' name='xktype'
+                                                                                             value='2'/><input
+        type='hidden' name='xq' value='0'/><input type='hidden' name='xn' value='2024'/><input type='hidden' name='xh'
+                                                                                               value='[USERNAME]'/><input
+        type='hidden' name='sel_cddwdm'/><input type='hidden' name='kcmc'/><input type='hidden' name='kcfw'
+                                                                                  value='Specialty'/><input
+        type='hidden' name='nj' value='2022'/></form>
+
+
+</body>
+</html>
