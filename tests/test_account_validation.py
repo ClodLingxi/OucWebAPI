@@ -11,7 +11,7 @@ ACCOUNT = {
 }
 
 class TestAccountValidation(unittest.TestCase):
-    _CAPTCHA_PATH = "test_resource/test_account_captcha.png"
+    _CAPTCHA_TEMP_PATH = "test_resource/test_account_captcha.png"
     _TEST_SESSION_ID = 'B718EB30FE1D875E4C5494C228781775'
     _LOGIN_CONFIG = LoginConfig(ACCOUNT['username'], ACCOUNT['password'])
 
@@ -31,10 +31,10 @@ class TestAccountValidation(unittest.TestCase):
 
     def test_get_captcha_and_recognize(self):
         captcha, _ = self.account_validation._get_raw_captcha_and_session_id()
-        with open(self._CAPTCHA_PATH, "wb") as file:
+        with open(self._CAPTCHA_TEMP_PATH, "wb") as file:
             file.write(captcha)
             file.close()
-        image = Image.open(self._CAPTCHA_PATH)
+        image = Image.open(self._CAPTCHA_TEMP_PATH)
         text = self.account_validation._recognize_captcha(image)
         print(text)
 
