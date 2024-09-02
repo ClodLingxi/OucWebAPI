@@ -1,0 +1,669 @@
+!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK"/>
+    <title>KINGOSOFT高校教务网络管理系统</title>
+    <link type="image/x-icon" rel="shortcut icon" href="http://jwgl.ouc.edu.cn:80/frame/images/favicon.ico"/>
+
+    <link rel="stylesheet" type="text/css" href="http://jwgl.ouc.edu.cn:80/frame/css/Form.css"></link>
+
+    <link rel="stylesheet" type="text/css" href="http://jwgl.ouc.edu.cn:80/frame/css/index.css"></link>
+
+    <style type="text/css">.xltd {
+        border-bottom: 1px solid #CDCDCD;
+        border-left: 1px solid #CDCDCD;
+
+    }
+
+    .jxz {
+        font-weight: bold;
+
+    }
+
+    .restday {
+        color: red;
+
+    }
+
+    .datalist tr {
+        height: 24px;
+        line-height: 24px;
+
+    }
+
+    </style>
+
+    <script type="text/javascript">javascript:window.history.forward(1);</script>
+
+    <script type="text/javascript">var
+        _webRootPath = "/";
+    var
+        _sessionid = "5D21163397C4C14393D6AE2751074124";</script>
+
+    <script type="text/javascript" src=\'http://jwgl.ouc.edu.cn:80/js/Form.js\'></script>
+
+    <script type="text/javascript" src=\'http://jwgl.ouc.edu.cn:80/js/Common.js\'></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/custom/js/SetKingoEncypt.jsp"
+            id="kingo_encypt"></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/custom/js/jquery.js"></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/custom/js/jkingo.js"></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/custom/js/md5.js"></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/custom/js/base64.js"></script>
+
+    <script type="text/javascript" src="http://jwgl.ouc.edu.cn:80/frame/LoginExt.js?version=2017112101"></script>
+
+    <script language="javascript">function
+    checkpwd(oInput) {
+        var pwd = oInput.value;
+        var result = 0;
+        for (var i = 0, len = pwd.length; i < len; ++i) {
+            result |= charType(pwd.charCodeAt(i));
+        }
+        document.getElementById("txt_mm_expression").value = result;  //密码规则            document.getElementById("txt_mm_length").value = pwd.length; //密码长度            var userzh = document.getElementById("yhmc").value; //取账号            var inuserzh = "0";                        if( pwd.toLowerCase().trim().indexOf(userzh.toLowerCase().trim()) > -1){            inuserzh = "1";            }            document.getElementById("txt_mm_userzh").value = inuserzh;  //判断密码是否包含账号     }                function charType(num){         if(num >= 48 && num <= 57){           return 8;         }         if (num >= 97 && num <= 122){           return 4;         }         if (num >= 65 && num <= 90){           return 2;         }         return 1;        }</script>
+
+</head>
+
+<body>
+<div class="wrap topbanner">
+    <div class="w">
+        <div class="banner" id="banner">
+            <div class="logo"></div>
+
+            <div class="appname"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="w content">
+    <div class="mt_left">
+        <div class="mt2">
+            <div id="lbl_login"></div>
+            <span class="mt_header2">登录</span>
+        </div>
+
+        <form id="LoginForm" name="LoginForm" action="" method="post"><input type="hidden"
+                                                                             id="txt_mm_expression"
+                                                                             name="txt_mm_expression"
+                                                                             value=""/> <input
+                type="hidden" id="txt_mm_length" name="txt_mm_length" value=""/> <input type="hidden"
+                                                                                        id="txt_mm_userzh"
+                                                                                        name="txt_mm_userzh"
+                                                                                        value=""/>
+            <table id="mt_login" style="display:block;">
+                <tr>
+                    <td width="60px;" id="UID" align="right" class="tdlabel">帐&nbsp;&nbsp;号</td>
+
+                    <td height="26px" align="left" class="tdinput"><input id="yhmc" name="yhmc"
+                                                                          tabindex="1"
+                                                                          accesskey="n"
+                                                                          onmouseover="this.select()"
+                                                                          autocomplete="off"
+                                                                          style="height:20px;width:139px;font-weight: bold;font-size: 14px; border:1px solid #B3B5B4"/>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td nowrap align="right" class="tdlabel">密&nbsp;&nbsp;码</td>
+
+                    <td align="left" class="tdinput"><input type="password" id="yhmm" name="yhmm"
+                                                            tabindex="2"
+                                                            tabindex="2"
+                                                            accesskey="p" onmouseover="this.select()"
+                                                            autocomplete="off"
+                                                            onblur="checkpwd(this)"
+                                                            onkeyup="checkpwd(this)"
+                                                            style="height:20px;width:139px;font-weight: bold;font-size: 14px; border:1px solid #B3B5B4"/>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td nowrap align="right" class="tdlabel">验证码</td>
+
+                    <td align="left" style="padding-top:3px;" class="tdinput"><input type="text"
+                                                                                     name="randnumber"
+                                                                                     id="randnumber"
+                                                                                     tabindex="3"
+                                                                                     style="width:61px;height:21px;float:left;font-weight: bold;font-size: 14px;border:1px solid #B3B5B4; margin-right:3px;"
+                                                                                     maxlength="4"
+                                                                                     onkeydown="gologin(event , this)"
+                                                                                     onfocus="refreshImg(\'0\')"/>
+                        <div class="div_random"><img height="24px" width="73px" id="randpic"
+                                                     onclick="refreshImg(\'1\')" name="randpic"
+                                                     alt="验证码" title="点击生成或刷新验证码"
+                                                     style="display:none;"/>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr style="height:10px;">
+                    <td colspan=3 style="height:10px;"></td>
+
+                </tr>
+
+                <tr>
+                    <td colspan=3 align="left" valign="top" class="tdinput"><input type="button"
+                                                                                   id="login"
+                                                                                   name="login"
+                                                                                   class="login"
+                                                                                   onclick="doLogon();"
+                                                                                   value="登&nbsp;&nbsp;录"
+                                                                                   style="margin-left:39px; width:195px; height:28px;line-height:24px;background-color: #26c3ff; color: #FFFFFF; font-weight: bold;"
+                                                                                   tabindex="4"/>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+
+                    <td colspan=2 height="26px" align="left" valign="top"><a
+                            href="javascript:void(0);" onclick="doReset();" style="padding-left: 20px;">忘记密码</a><a
+                            href="javascript:void(0);" onclick="doJwmis();" style="padding-left: 5px;display: none;">旧版系统入口</a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan=2 align=center style="color:red;display: none;"><label id="msg"
+                                                                                       name="msg"
+                                                                                       style="display:block;"></label>
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <table id="mt_welcome" style="display:none;">
+                <tr>
+                    <td colspan=2 align="left">欢迎您，<span id="username2"></span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan=2 align="left">登录时间：<span id="logintime"></span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan=2 align="left">登&nbsp;录&nbsp;IP：<span id="loginip"></span>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td width="50px;">&nbsp;</td>
+
+                    <td align="left" valign="top"><input type="button" id="logout" name="logout"
+                                                         class="logout" onclick="doLogout();"
+                                                         value="注销"
+                                                         style="width:135px; height:27px;"
+                                                         tabindex="4"/>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan=2 align=center style="color:red;"><label id="msg" name="msg"
+                                                                         style="display:block;"></label>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </form>
+
+    </div>
+
+    <div class="mt_right">
+        <div class="mt_notice">
+            <div class="mt2">
+                <div id="lbl_notice"></div>
+                <span class="mt_header3">教务通知</span><span class="mt_more" id="to_more"><img
+                    src="/frame14/img/actor_right.png"></img></span>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="mt_notice" id="desk_notice">
+            <table width="100%">
+                <tbody>
+                <tr>
+                <tr>
+                    <td align="left" style="padding-top: 5px; width: 70%;">
+                        正在加载通知公告记录...
+                    </td>
+
+                    <td align="right" style="padding-top: 5px; width: 30%;">&nbsp;&nbsp;</td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="w">
+    <div class="divline" id="line960"></div>
+
+</div>
+
+<div class="w" id="content"><!-- 内容区左侧区 -->
+    <div class="mt_content_left">
+        <div class="mt_class"><input type="hidden" id="xqh" value=""></input>
+            <table width="100%" border=0 cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" height="40px">
+                        <div class="mt2">
+                            <div id="lbl_calendar"></div>
+                            <span class="mt_header2">校历</span>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <div style="border:1px solid #CDCDCD;width:274px;background:white">
+                            <table border=\'0\' width=\'100%\' cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="150px" id="xqshow"
+                                        style="color:#0380A0;font-family:宋体;padding-top:5px;padding-left:5px;text-align: left;"
+                                        valign="middle">
+                                    </td>
+
+                                    <td align="right" height="30px" valign="middle" id="xl_years">
+
+                                    </td>
+
+                                    <td align="right" height="30px" valign="middle"><select
+                                            onchange="onloadXL()" id="month" name="month">
+                                        <option value=\'01\'>1月</option>
+                                        ;
+                                        <option value=\'02\'>2月</option>
+                                        ;
+                                        <option value=\'03\'>3月</option>
+                                        ;
+                                        <option value=\'04\'>4月</option>
+                                        ;
+                                        <option value=\'05\'>5月</option>
+                                        ;
+                                        <option value=\'06\'>6月</option>
+                                        ;
+                                        <option value=\'07\'>7月</option>
+                                        ;
+                                        <option value=\'08\'>8月</option>
+                                        ;
+                                        <option value=\'09\' selected>9月</option>
+                                        ;
+                                        <option value=\'10\'>10月</option>
+                                        ;
+                                        <option value=\'11\'>11月</option>
+                                        ;
+                                        <option value=\'12\'>12月</option>
+                                        ;</select>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td colspan=\'3\' height="14px" valign="middle">
+                                        <table border=0 cellpadding=\'0\' cellspacing=\'0\' height="100%" width=\'100%\'
+                                               style="font-family: \'宋体\'">
+                                            <tr>
+                                                <td align=\'center\' width="27px;"
+                                                    style="padding-left: 0px; padding-right: 0px;">周次
+                                                </td>
+
+                                                <td align=\'center\'>日</td>
+                                                <td align=\'center\'>一</td>
+                                                <td align=\'center\'>二</td>
+                                                <td align=\'center\'>三</td>
+
+                                                <td align=\'center\'>四</td>
+                                                <td align=\'center\'>五</td>
+                                                <td align=\'center\'>六</td>
+
+                                                <td align=\'center\' width="27px;">备注</td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                            <div id="xlshow"></div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td align="center" height="40px">
+                        <div class="mt2">
+                            <div id="lbl_calendar"></div>
+                            <span class="mt_header2">海大导航</span>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="word-break:break-all;padding-top:1px;" height="36" valign="top"><a
+                            href="http://xinwen.ouc.edu.cn/Index.html" target="_blank"><img
+                            src="../frame/img/10_ghtt.png" original_name="1_09.png"/></a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="word-break:break-all" height="36" valign="top"><a
+                            href="http://xinwen.ouc.edu.cn/ghttxsz/hdyxzy/index.html" target="_blank"><img
+                            src="../frame/img/10_tphd.png" original_name="1_11.png"/></a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="word-break:break-all" height="36" valign="top"><a
+                            href="http://newsvideo.ouc.edu.cn/" target="_blank"><img
+                            src="../frame/img/10_sphd.png" original_name="1_12.png"/></a><a
+                            href="http://222.195.158.249:82/xiaoshiguan.htm" target="_blank"></a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td height="36" valign="top"><a href="http://web.ouc.edu.cn/oucinformation/"
+                                                    target="_blank"><img
+                            src="../frame/img/10_xxfw.png" original_name="1_13.png"/></a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td height="36" valign="top"><a href="http://urp.ouc.edu.cn/" target="_blank"><img
+                            src="../frame/img/10_xxmh.png" original_name="1_14.png"/></a>
+                    </td>
+
+                </tr>
+
+                <tr style="display: none;">
+                    <td height="36" valign="top"><a href="http://mail.ouc.edu.cn/" target="_blank"
+                                                    sudyfile-attr="{\'title\':\'只支持选中一个链接时生效\'}"><img
+                            src="http://www.ouc.edu.cn/_upload/article/53/ef/c8e77c844f56bfbec3f42360591f/efb762b1-100c-49d6-9c96-e0f2a85b5481.png"
+                            original_name="1_15.png"/></a>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!-- 调课信息显示结束 -->
+    <div class="mt_right_tkxx">
+        <div class="mt_tkxx">
+            <div class="mt2">
+                <div id="lbl_notice"></div>
+                <span class="mt_header3">调课信息</span><span class="mt_more"
+                                                              id="to_more_tkxx"><img
+                    src="/frame14/img/actor_right.png"></img></span>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="mt_notice" id="desk_tkxx">
+            <table width="100%">
+                <tbody>
+                <tr>
+                    <td align="left" style="padding-top: 5px; padding-left: 10px; width: 70%;">
+                        正在加载调课信息记录...
+                    </td>
+
+                    <td align="right" style="padding-top: 5px; width: 30%;">&nbsp;&nbsp;</td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!-- 调课信息显示结束 --> <!-- 教室动态显示开始 -->
+    <div class="mt_right_jsdd">
+        <div class="mt_jsdd">
+            <div class="mt2">
+                <div id="lbl_notice"></div>
+                <span class="mt_header3">教室动态</span><span class="mt_more"
+                                                              id="to_more_jsdt"><img
+                    src="/frame14/img/actor_right.png"></img></span>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="mt_notice" id="desk_jsdd">
+            <table width="100%">
+                <tbody>
+                <tr>
+                <tr>
+                    <td align="left" style="padding-top: 5px; padding-left: 10px; width: 70%;">
+                        正在加载教室动态记录...
+                    </td>
+
+                    <td align="right" style="padding-top: 5px; width: 30%;">&nbsp;&nbsp;</td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!-- 教室动态显示结束 -->
+    <div class="mt_content_right" style="display:none;">
+        <div class="mt_query kckb" id="qry_kckb"><p class="qry_title">课程课表</p></div>
+
+        <div class="mt_query jskb"><span id="qry_jskb"><p class="qry_title">教师课表</p></span>
+        </div>
+
+        <div class="mt_query jsikb" id="qry_jsikb"><p class="qry_title">教室课表</p></div>
+
+        <div class="mt_query zykb" id="qry_zykb"><p class="qry_title">班级课表</p></div>
+
+        <div class="mt_query zrjckb" id="qry_zrjckb"><p class="qry_title">周/日/节次课表</p></div>
+
+        <div class="mt_query qxkb_ajs" id="qry_qxkb_ajs"><p class="qry_title">全校课表(按教室)</p>
+        </div>
+
+        <div class="mt_query kxjs" id="qry_kxjs"><p class="qry_title">空闲教室查询</p></div>
+
+        <div class="mt_query jssyqk" id="qry_jssyqk"><p class="qry_title">教室使用情况</p></div>
+
+        <!--<div class="mt_query rxkb"  id="qry_rxkb"><p class="qry_title">任选课表</p></div>-->
+
+        <div class="mt_query cjjy" id="qry_cjjy"><p class="qry_title">成绩校验</p></div>
+
+        <div id="clear"></div>
+
+    </div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="wrap2 footerext">
+    <div class="w">
+        <div id="div_footer">
+            <div class="footer_left"></div>
+
+            <div class="footer todaynews"><span class="title">友情链接</span>
+                <table style="width: 100%">
+                    <tr>
+                        <td class="td"><a href="http://www.moe.edu.cn/"
+                                          target="_blank">中华人民共和国教育部</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td"><a href="http://www.chsi.com.cn/"
+                                          target="_blank">中国高等教育学生信息网(学信网)</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td"><a href="http://www.jucai360.com/" target="_blank">聚才网</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td"><a href="http://www.kewai365.com/" target="_blank">课外网</a>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="footer todaynews1" style="display: none;"><span class="title">今日青果</span>
+                <table style="width: 100%">
+                    <tr>
+                        <td class="td"><img src="/images/news-nav.gif"></img><a
+                                href="http://www.palmcampus.com/" target="_blank">青果掌上课表正式发布</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td"><img src="/images/news-nav.gif"></img><a
+                                href="http://ww.kingosoft.com:800/html/news/20150409.html" target="_blank">博才实验中学智慧校园正式上线</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td"><img src="/images/news-nav.gif"></img><a
+                                href="http://ww.kingosoft.com:800/html/news/20150415.html" target="_blank">天津中德职院与青果软件战略合作向纵深发展</a>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="footer support"><span class="title">系统支持</span>
+                <table style="width: 100%">
+                    <tr>
+                        <td class="td1">电话：</td>
+
+                        <td class="td2">0532-66781641</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td1">邮箱：</td>
+
+                        <td class="td2"><a href="mailto:yfzx@kingosoft.com">yfzx@kingosoft.com</a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td1">网址：</td>
+
+                        <td class="td2"><a href="http://www.ouc.edu.cn">www.ouc.edu.cn</a></td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td1">地址：</td>
+
+                        <td class="td2">青岛市崂山区中国海洋大学行远楼328</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="footer footer_kingo"><span class="title">关注青果</span>
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="td"><a href="http://www.kingosoft.com/" target="_blank"><img
+                                src="http://jwgl.ouc.edu.cn:80/frame14/img/weixin.gif" width="98px" height="98px"></img></a>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="footer_right"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+<div class="wrap copyright">
+    <div class="w">
+        <div id="footer">
+            <script language=javascript src="../js/foot.js"></script>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

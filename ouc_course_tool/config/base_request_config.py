@@ -11,16 +11,12 @@ class BaseRequestConfig:
 
     def get_headers(self):
         if self._session_id is None:
-            return None
+            return {
+                "referer": self._referer,
+                "user-agent": self._user_agent
+            }
         return {
             "cookie": "JSESSIONID=" + self._session_id,
-            "referer": self._referer,
-            "user-agent": self._user_agent
-        }
-
-    def get_headers(self, session_id):
-        return {
-            "cookie": "JSESSIONID=" + session_id,
             "referer": self._referer,
             "user-agent": self._user_agent
         }
@@ -30,6 +26,9 @@ class BaseRequestConfig:
 
     def get_url(self):
         return self._base_url
+
+    def set_session_id(self, session_id):
+        self._session_id = session_id
 
     def get_session_id(self):
         return self._session_id
