@@ -12,11 +12,13 @@ if __name__ == '__main__':
         items="", xnxq="2024-0", kcfw="Specialty", sel_nj="2022", sel_zydm="0143",
         sel_schoolarea=""
     ).to_dict()
+
     fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params)
     course_fetcher = CourseFetcher(config=fetcher_config)
 
     fetcher_result = course_fetcher.get_courses()
 
     for course in fetcher_result:
+        print(course.selection_number)
         print(course)
 

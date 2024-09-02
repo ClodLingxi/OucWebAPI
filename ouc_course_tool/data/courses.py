@@ -1,6 +1,26 @@
 class FetcherParams:
+
     def __init__(self, initQry, xktype, xh, xn, xq, nj, zydm, items, xnxq, kcfw,
                  sel_nj, sel_zydm, sel_schoolarea, sel_cddwdm="", sel_kc="", kcmc=""):
+        """
+        :param initQry: 一般为0
+        :param xktype: 选课类型
+        :param xh: 学号， 为你的默认信息
+        :param xn: 学年
+        :param xq: 夏季学期为 0， 随时间递增递增
+        :param nj: 年级， 为你的默认信息
+        :param zydm: 专业编号， 为你的默认信息
+        :param items: 一般为空
+        :param xnxq: 学年和学期 例如：2024学年的秋季学期————2024-1 （其中2024-1为字符串内容）
+        :param kcfw: 课程范围（PublicBasic 为公共课，Specialty 为专业课）
+        :param sel_nj: 选择课程 所对应的 年级
+        :param sel_zydm: 选择课程 所对应的 专业编号
+        :param sel_schoolarea: 选择课程 所对应的 选课校区 从 0-3 其中 3 为西海岸
+        :param sel_cddwdm: 一般为空
+        :param sel_kc: 一般为空
+        :param kcmc: 一般为空
+        """
+
         self.initQry = initQry
         self.xktype = xktype
         self.xh = xh
@@ -47,6 +67,24 @@ class FetcherParams:
 
 class Course:
     def __init__(self, selection_number, course_name, campus, teaching_method, instructor, start_week, credits, total_hours, limit, selected_count, confirmed_count, class_time, class_location, syllabus, teaching_calendar, notes):
+        """
+        :param selection_number: 选课号
+        :param course_name: 课程
+        :param campus: 开课校区
+        :param teaching_method: 授课方式
+        :param instructor: 任课教师
+        :param start_week: 起始周
+        :param credits: 学分
+        :param total_hours: 总学时
+        :param limit: 限选人数
+        :param selected_count: 已选人数
+        :param confirmed_count: 确定人数
+        :param class_time: 上课时间
+        :param class_location: 上课地点
+        :param syllabus: 教学大纲
+        :param teaching_calendar: 教学日历
+        :param notes: 备注
+        """
         self.selection_number = selection_number
         self.course_name = course_name
         self.campus = campus
