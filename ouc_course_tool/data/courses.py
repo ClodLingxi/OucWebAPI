@@ -1,7 +1,7 @@
 class FetcherParams:
 
-    def __init__(self, initQry, xktype, xh, xn, xq, nj, zydm, items, xnxq, kcfw,
-                 sel_nj, sel_zydm, sel_schoolarea, sel_cddwdm="", sel_kc="", kcmc=""):
+    def __init__(self, initQry="0", xktype="2", xh="230000000", xn="2024", xq="1", nj="2023", zydm="0150", items="", xnxq="2024-1", kcfw="Specialty",
+                 sel_nj="2023", sel_zydm="150", sel_schoolarea="", sel_cddwdm="", sel_kc="", kcmc=""):
         """
         :param initQry: 一般为0
         :param xktype: 选课类型
