@@ -5,7 +5,11 @@ if __name__ == '__main__':
     # 格式在根目录下的 account.ini 文件中
     test_config = ConfigOfTest('./tests/test_resource/account_local.ini')
 
-    login_config = LoginConfig(test_config.get_username(), test_config.get_password())
+    # Tesseract 图片识别软件
+    # EXAMPLE DOWNLOAD URL: https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-5.3.4.20240503.exe
+    tesseract_cmd_path = 'D:/Tools/Tesseract/tesseract.exe'
+
+    login_config = LoginConfig(test_config.get_username(), test_config.get_password(), tesseract_cmd_path)
     session_id = AccountValidation(login_config).get_login_session_id()
 
     """ 样例

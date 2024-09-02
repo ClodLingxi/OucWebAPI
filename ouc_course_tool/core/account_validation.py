@@ -18,8 +18,6 @@ class AccountValidation:
     _LOGIN_URL = 'http://jwgl.ouc.edu.cn/cas/login.action'
     _CAPTCHA_URL = 'http://jwgl.ouc.edu.cn/cas/genValidateCode'
 
-    _TESSERACT_CMD_PATH = 'D:/Tools/Tesseract/tesseract.exe'
-
     _MAX_RECOGNIZE_TIME = 10
     _MAX_LOGIN_TIME = 5
 
@@ -49,7 +47,7 @@ class AccountValidation:
         return rand_number
 
     def _recognize_captcha(self, image):
-        pytesseract.pytesseract.tesseract_cmd = self._TESSERACT_CMD_PATH
+        pytesseract.pytesseract.tesseract_cmd = self.config.get_tesseract_path()
         img = image.convert('L')
         img = np.array(img)
         _, img = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
