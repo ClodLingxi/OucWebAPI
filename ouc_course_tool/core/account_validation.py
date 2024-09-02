@@ -25,6 +25,7 @@ class AccountValidation:
 
     def __init__(self, config: LoginConfig):
         self.config = config
+        self.logger = Logger('AccountValidation')
 
     @staticmethod
     def _md5_hash(text):
@@ -121,6 +122,6 @@ class AccountValidation:
                 return session_id
             elif message == '验证码有误!':
                 time -= 1
-        Logger.info('Try login with ' + str(self._MAX_LOGIN_TIME - time) + 'times')
+        self.logger.info('Try login with ' + str(self._MAX_LOGIN_TIME - time) + 'times')
 
         return None

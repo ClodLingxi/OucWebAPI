@@ -1,6 +1,6 @@
 class FetcherParams:
     def __init__(self, initQry, xktype, xh, xn, xq, nj, zydm, items, xnxq, kcfw,
-                 sel_nj, sel_zydm, sel_schoolarea, sel_cddwdm, sel_kc, kcmc):
+                 sel_nj, sel_zydm, sel_schoolarea, sel_cddwdm="", sel_kc="", kcmc=""):
         self.initQry = initQry
         self.xktype = xktype
         self.xh = xh

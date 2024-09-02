@@ -8,16 +8,16 @@ class CourseFetcher:
     def __init__(self, config=None):
         self.config: FetcherConfig = config
 
-    def html_request(self):
+    def get_courses(self, raw_html=None):
+        raw_courses_list = self._get_raw_courses_list(raw_html)
+        return self._courses_format(raw_courses_list)
+
+    def _html_request(self):
         return (requests.
                 post(self.config.get_url(), headers=self.config.get_headers(), params=self.config.get_params()).text)
 
-    def get_courses(self, raw_html=None):
-        raw_courses_list = self.get_raw_courses_list(raw_html)
-        return self.courses_format(raw_courses_list)
-
     @staticmethod
-    def courses_format(raw_courses_list):
+    def _courses_format(raw_courses_list):
         class_time_index = -5
 
         courses_list = []
@@ -36,15 +36,14 @@ class CourseFetcher:
         return courses_list
 
 
-    def get_raw_courses_list(self, raw_html=None):
-        #cell limit
-        attrs = {'style': ''}
+    def _get_raw_courses_list(self, raw_html=None):
+        cell_attrs = {'style': ''}
         if raw_html is None:
-            raw_html = self.html_request()
+            raw_html = self._html_request()
         soup = BeautifulSoup(raw_html, 'html.parser')
         table = soup.find('table')
         rows = []
-        for row in table.find_all('tr', class_='E'):
-            cells = [cell.get_text(strip=True) for cell in row.find_all(name='td', attrs=attrs)]
+        for row in table.find_all('tr', class_=lambda value: value in ['E', 'O']):
+            cells = [cell.get_text(strip=True) for cell in row.find_all(name='td', attrs=cell_attrs)]
             rows.append(cells)
         return rows
