@@ -1,7 +1,12 @@
+import urllib
+from urllib.parse import quote, quote_from_bytes
+
+
 class FetcherParams:
 
-    def __init__(self, initQry="0", xktype="2", xh="230000000", xn="2024", xq="1", nj="2023", zydm="0150", items="", xnxq="2024-1", kcfw="Specialty",
-                 sel_nj="2023", sel_zydm="150", sel_schoolarea="", sel_cddwdm="", sel_kc="", kcmc=""):
+    def __init__(self, initQry="0", xktype="2", xh="230000000", xn="2024", xq="1", nj="2023", zydm="0150", items="",
+                 xnxq="2024-1", kcfw="Specialty",
+                 sel_nj="2022", sel_zydm="0150", sel_schoolarea="", sel_cddwdm="", sel_kc="", kcmc=""):
         """
         :param initQry: 一般为0
         :param xktype: 选课类型
@@ -16,8 +21,8 @@ class FetcherParams:
         :param sel_nj: 选择课程 所对应的 年级
         :param sel_zydm: 选择课程 所对应的 专业编号
         :param sel_schoolarea: 选择课程 所对应的 选课校区 从 0-3 其中 3 为西海岸
-        :param sel_cddwdm: 一般为空
-        :param sel_kc: 一般为空
+        :param sel_cddwdm: 开课单位
+        :param sel_kc: 搜索关键字
         :param kcmc: 一般为空
         """
 
@@ -35,7 +40,7 @@ class FetcherParams:
         self.sel_zydm = sel_zydm
         self.sel_schoolarea = sel_schoolarea
         self.sel_cddwdm = sel_cddwdm
-        self.sel_kc = sel_kc
+        self.sel_kc = sel_kc.encode('GB2312')
         self.kcmc = kcmc
 
     def __repr__(self):
@@ -65,8 +70,11 @@ class FetcherParams:
             "kcmc": self.kcmc
         }
 
+
 class Course:
-    def __init__(self, selection_number, course_name, campus, teaching_method, instructor, start_week, credits, total_hours, limit, selected_count, confirmed_count, class_time, class_location, syllabus, teaching_calendar, notes):
+    def __init__(self, selection_number, course_name, campus, teaching_method, instructor, start_week, credits,
+                 total_hours, limit, selected_count, confirmed_count, class_time, class_location, syllabus,
+                 teaching_calendar, notes):
         """
         :param selection_number: 选课号
         :param course_name: 课程
@@ -109,11 +117,12 @@ class Course:
         self.notes = notes
 
     def __repr__(self):
-        return (f"Course(selection_number='{self.selection_number}', course_name='{self.course_name}', campus='{self.campus}', "
-                f"teaching_method='{self.teaching_method}', instructor='{self.instructor}', start_week='{self.start_week}', "
-                f"credits={self.credits}, total_hours={self.total_hours}, limit={self.limit}, selected_count={self.selected_count}, "
-                f"confirmed_count={self.confirmed_count}, class_time='{self.class_time}', class_location='{self.class_location}', "
-                f"syllabus='{self.syllabus}', teaching_calendar='{self.teaching_calendar}', notes='{self.notes}')")
+        return (
+            f"Course(selection_number='{self.selection_number}', course_name='{self.course_name}', campus='{self.campus}', "
+            f"teaching_method='{self.teaching_method}', instructor='{self.instructor}', start_week='{self.start_week}', "
+            f"credits={self.credits}, total_hours={self.total_hours}, limit={self.limit}, selected_count={self.selected_count}, "
+            f"confirmed_count={self.confirmed_count}, class_time='{self.class_time}', class_location='{self.class_location}', "
+            f"syllabus='{self.syllabus}', teaching_calendar='{self.teaching_calendar}', notes='{self.notes}')")
 
     def add_class_time(self, class_time):
         self.class_time.append(class_time)

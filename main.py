@@ -12,7 +12,7 @@ if __name__ == '__main__':
     login_config = LoginConfig(test_config.get_username(), test_config.get_password(), tesseract_cmd_path)
     session_id = AccountValidation(login_config).get_login_session_id()
 
-    """ 样例
+    """ 样例 1
     xnxq="2024-1" 代表2024年第二个学期
     kcfw="Specialty" 代表专业课
     sel_nj="2023" 代表选课的年级 为2023级
@@ -21,14 +21,25 @@ if __name__ == '__main__':
     """
     fetcher_params = FetcherParams(
         xnxq="2024-1", kcfw="Specialty", sel_nj="2023", sel_zydm="0150", sel_schoolarea="3"
+
     ).to_dict()
 
-    fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params)
+    """ 样例 2
+    xnxq="2024-1" 代表2024年第二个学期
+    kcfw="PublicBasic" 代表公共课
+    sel_schoolarea="3" 代表选择的校区 为西海岸校区
+    sel_kc="概率统计" 关键词为“概率统计”
+    """
+    fetcher_params2 = FetcherParams(
+        xnxq="2024-1", kcfw="PublicBasic", sel_schoolarea="3", sel_kc="概率统计", sel_zydm="0150"
+    ).to_dict()
+    print(fetcher_params2)
+
+    fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params2)
     course_fetcher = CourseFetcher(config=fetcher_config)
 
     fetcher_result = course_fetcher.get_courses()
 
     for course in fetcher_result:
-        print(course.selection_number)
         print(course)
 

@@ -13,8 +13,8 @@ class CourseFetcher:
         return self._courses_format(raw_courses_list)
 
     def _html_request(self):
-        return (requests.
-                post(self.config.get_url(), headers=self.config.get_headers(), params=self.config.get_params()).text)
+        result = requests.post(self.config.get_url(), headers=self.config.get_headers(), params=self.config.get_params())
+        return result.text
 
     @staticmethod
     def _courses_format(raw_courses_list):
