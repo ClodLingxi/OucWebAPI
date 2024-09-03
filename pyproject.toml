@@ -13,6 +13,7 @@ selenium = "^4.24.0"
 pillow = "^10.4.0"
 pytesseract = "^0.3.13"
 opencv-python = "^4.10.0.84"
+matplotlib = "^3.9.2"
 
 
 [build-system]
