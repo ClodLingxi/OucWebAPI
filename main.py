@@ -37,7 +37,7 @@ if __name__ == '__main__':
     fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params2)
     course_fetcher = CourseFetcher(config=fetcher_config)
 
-    page_count_result = course_fetcher.get_page_total_count()
+    page_count_result = course_fetcher._get_page_total_count()
     for page_current in range(1, page_count_result + 1):
         print("-" * 5 + "第" + str(page_current) + "页" + "-" * 5)
         fetcher_result = course_fetcher.get_courses_from_page_current(page_current)

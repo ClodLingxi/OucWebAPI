@@ -39,6 +39,7 @@ class MyTestCase(unittest.TestCase):
             # '计算机系统基础',
             # '大学生职业发展教育',
             '人工智能导论',
+            '机器人学导论',
         ]
 
         def limit_function(course: Course):

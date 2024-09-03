@@ -63,10 +63,11 @@ class TestCourseFechter(unittest.TestCase):
 
     def test_total_page_fetcher(self):
         fetcher_params = FetcherParams(
-            xnxq="2024-1", kcfw="PublicBasic", sel_schoolarea="3", sel_kc="概率",
+            xnxq="2024-1", kcfw="Specialty", sel_schoolarea="3", sel_kc="数值分析",
         ).to_dict()
         self.fetcher.config.set_params(fetcher_params)
         result = self.fetcher.get_all_courses_from_all_page()
+        print(result)
 
     def test_mul_fetcher(self):
         target_course = [
@@ -75,7 +76,6 @@ class TestCourseFechter(unittest.TestCase):
             '毛泽东思想-公共',
             '离散数学-智能科学-2023',
             '计算机系统基础-智能科学-2023',
-            '大学生职业发展教育-智能科学-2023',
             '人工智能导论-智能科学-2022',
             # '计算机图形学-智能科学-2022',
         ]
@@ -87,3 +87,7 @@ class TestCourseFechter(unittest.TestCase):
 
         test_module = tests.test_schedule.MyTestCase()
         test_module.test_something(limit=True)
+
+    def test_get_course_by_id(self):
+        result = self.fetcher.get_course_by_selection_id("19000017")
+        print(result)

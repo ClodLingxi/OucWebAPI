@@ -3,6 +3,7 @@ from logging import Logger
 import re
 import requests
 from bs4 import BeautifulSoup
+from jupyter_events.validators import resources
 
 from ouc_course_tool.config import FetcherConfig
 from ouc_course_tool.data import Course
@@ -16,18 +17,18 @@ class CourseFetcher:
     def set_search_param(self, params):
         self.config.set_params(params)
 
-    def get_raw_html_request(self):
+    def _get_raw_html_request(self):
         # print("Start get html " + str(self.config.get_url()))
         result = requests.post(self.config.get_url(), headers=self.config.get_headers(),
                                params=self.config.get_params(), timeout=(10, 10))
         # print("End get html " + str(self.config.get_url()))
         return result.text
 
-    def get_page_total_count(self, raw_html=None):
+    def _get_page_total_count(self, raw_html=None):
         self.config.set_page_current()
 
         if raw_html is None:
-            raw_html = self.get_raw_html_request()
+            raw_html = self._get_raw_html_request()
         soup = BeautifulSoup(raw_html, 'html.parser')
         pagination_div = soup.find('div', {'class': 'pagination'})
         if pagination_div is None:
@@ -36,6 +37,18 @@ class CourseFetcher:
         match = re.search(r'\breloadPage\(.+?,(\d+),\d+\);', str(reload_script))
         return int(str(reload_script)[match.start(1)])
 
+    def get_course_by_selection_id(self, selection_id, xn='2024', xq='1', xh=''):
+        param = {
+            "xkh": selection_id,
+            "xn": xn,
+            "xq": xq,
+            "xh": xh,
+            "hidOption": "qry"
+        }
+        result = requests.post(self.config.id_base_url, headers=self.config.get_headers(),
+                               params=param, timeout=(10, 10)).json()
+        return result
+
     def get_courses_from_page_current(self, page_current=1, raw_html=None):
         self.config.set_page_current(page_current)
 
@@ -43,7 +56,7 @@ class CourseFetcher:
         return self._courses_format(raw_courses_list)
 
     def get_all_courses_from_all_page(self):
-        page_count_result = self.get_page_total_count()
+        page_count_result = self._get_page_total_count()
 
         result = []
         for page_current in range(1, page_count_result + 1):
@@ -85,7 +98,7 @@ class CourseFetcher:
     def _get_raw_courses_list(self, raw_html=None):
         cell_attrs = {'style': ''}
         if raw_html is None:
-            raw_html = self.get_raw_html_request()
+            raw_html = self._get_raw_html_request()
         soup = BeautifulSoup(raw_html, 'html.parser')
         table = soup.find('table')
 
