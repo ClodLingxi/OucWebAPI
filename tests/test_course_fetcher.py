@@ -36,12 +36,12 @@ class TestCourseFechter(unittest.TestCase):
     def test_fetcher_by_html(self):
         with open(self._TEST_FILE, 'r', encoding='utf-8') as file:
             raw_html = file.read()
-            courses = self.fetcher.get_courses(raw_html)
+            courses = self.fetcher.get_first_page_courses(raw_html)
             for course in courses:
                 print(course)
 
     def test_fetcher_by_test_config(self):
-        courses = self.fetcher.get_courses()
+        courses = self.fetcher.get_first_page_courses()
         for course in courses:
             print(course)
 
@@ -50,6 +50,6 @@ class TestCourseFechter(unittest.TestCase):
         session_id = self.account_validation.get_login_session_id()
         self.fetcher.config.set_session_id(session_id)
 
-        courses = self.fetcher.get_courses()
+        courses = self.fetcher.get_first_page_courses()
         for course in courses:
             print(course)

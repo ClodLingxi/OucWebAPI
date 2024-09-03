@@ -31,15 +31,19 @@ if __name__ == '__main__':
     sel_kc="概率统计" 关键词为“概率统计”
     """
     fetcher_params2 = FetcherParams(
-        xnxq="2024-1", kcfw="PublicBasic", sel_schoolarea="3", sel_kc="概率统计", sel_zydm="0150"
+        xnxq="2024-1", kcfw="PublicBasic", sel_schoolarea="3", sel_kc="",
     ).to_dict()
-    print(fetcher_params2)
 
     fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params2)
     course_fetcher = CourseFetcher(config=fetcher_config)
 
     fetcher_result = course_fetcher.get_courses()
+    # 获取第二页结果
+    fetcher_second_result = course_fetcher.get_courses(2)
 
-    for course in fetcher_result:
+    # for course in fetcher_result:
+    #     print(course)
+
+    for course in fetcher_second_result:
         print(course)
 

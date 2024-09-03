@@ -1,3 +1,6 @@
+from logging import Logger
+from msilib.schema import tables
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -7,17 +10,27 @@ from ouc_course_tool.data import Course
 class CourseFetcher:
     def __init__(self, config=None):
         self.config: FetcherConfig = config
+        self.logger = Logger(self.__class__.__name__)
 
-    def get_courses(self, raw_html=None):
-        raw_courses_list = self._get_raw_courses_list(raw_html)
-        return self._courses_format(raw_courses_list)
-
-    def _html_request(self):
+    def get_raw_html_request(self):
         result = requests.post(self.config.get_url(), headers=self.config.get_headers(), params=self.config.get_params())
         return result.text
 
-    @staticmethod
-    def _courses_format(raw_courses_list):
+    def get_page_total_count(self, raw_html=None):
+        pass
+
+
+    def get_courses(self, page_current=1, raw_html=None):
+        self.config.set_page_current(page_current)
+
+        raw_courses_list = self._get_raw_courses_list(raw_html)
+        return self._courses_format(raw_courses_list)
+
+    def _courses_format(self, raw_courses_list):
+        if not raw_courses_list:
+            self.logger.info('Can not get raw courses list')
+            return []
+
         class_time_index = -5
 
         courses_list = []
@@ -39,11 +52,15 @@ class CourseFetcher:
     def _get_raw_courses_list(self, raw_html=None):
         cell_attrs = {'style': ''}
         if raw_html is None:
-            raw_html = self._html_request()
+            raw_html = self.get_raw_html_request()
         soup = BeautifulSoup(raw_html, 'html.parser')
         table = soup.find('table')
+
+        if table is None:
+            return None
         rows = []
         for row in table.find_all('tr', class_=lambda value: value in ['E', 'O']):
             cells = [cell.get_text(strip=True) for cell in row.find_all(name='td', attrs=cell_attrs)]
             rows.append(cells)
+
         return rows
