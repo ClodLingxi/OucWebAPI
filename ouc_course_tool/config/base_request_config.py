@@ -21,6 +21,11 @@ class BaseRequestConfig:
             "user-agent": self._user_agent
         }
 
+    def set_params(self, params):
+        if type(params) is not dict:
+            params = params.to_dict()
+        self._params = params
+
     def get_params(self):
         return self._params
 

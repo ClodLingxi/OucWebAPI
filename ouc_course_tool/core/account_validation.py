@@ -107,9 +107,18 @@ class AccountValidation:
         }
 
         self.config.set_session_id(session_id)
-        response = requests.post(self.config.get_url(), params=params, headers=self.config.get_headers())
+
+        # print("Start login " + str(self.config.get_url()))
+        response = requests.post(self.config.get_url(), params=params, headers=self.config.get_headers(), timeout=(10, 10))
+        # print("End login " + str(self.config.get_url()))
 
         return response.json(), session_id
+
+    """
+    {'initQry': '0', 'xktype': '2', 'xh': '230000000', 'xn': '2024', 'xq': '1', 'nj': '2023', 'zydm': 
+    '0150', 'items': '', 'xnxq': '2024-1', 'kcfw': 'PublicBasic', 'sel_nj': '2022', 'sel_zydm': '0150',
+     'sel_schoolarea': '3', 'sel_cddwdm': '', 'sel_kc': b'\xb8\xc5\xc2\xca', 'kcmc': ''}
+    """
 
     def get_login_session_id(self):
         time = self._MAX_LOGIN_TIME
@@ -120,6 +129,8 @@ class AccountValidation:
                 return session_id
             elif message == '验证码有误!':
                 time -= 1
-        self.logger.info('Try login with ' + str(self._MAX_LOGIN_TIME - time) + 'times')
+            else:
+                print("err" + result)
+                break
 
         return None

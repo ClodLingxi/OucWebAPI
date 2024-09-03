@@ -7,13 +7,20 @@ from bs4 import BeautifulSoup
 from ouc_course_tool.config import FetcherConfig
 from ouc_course_tool.data import Course
 
+
 class CourseFetcher:
     def __init__(self, config=None):
         self.config: FetcherConfig = config
         self.logger = Logger(self.__class__.__name__)
 
+    def set_search_param(self, params):
+        self.config.set_params(params)
+
     def get_raw_html_request(self):
-        result = requests.post(self.config.get_url(), headers=self.config.get_headers(), params=self.config.get_params())
+        # print("Start get html " + str(self.config.get_url()))
+        result = requests.post(self.config.get_url(), headers=self.config.get_headers(),
+                               params=self.config.get_params(), timeout=(10, 10))
+        # print("End get html " + str(self.config.get_url()))
         return result.text
 
     def get_page_total_count(self, raw_html=None):
@@ -29,13 +36,29 @@ class CourseFetcher:
         match = re.search(r'\breloadPage\(.+?,(\d+),\d+\);', str(reload_script))
         return int(str(reload_script)[match.start(1)])
 
-
-
-    def get_courses(self, page_current=1, raw_html=None):
+    def get_courses_from_page_current(self, page_current=1, raw_html=None):
         self.config.set_page_current(page_current)
 
         raw_courses_list = self._get_raw_courses_list(raw_html)
         return self._courses_format(raw_courses_list)
+
+    def get_all_courses_from_all_page(self):
+        page_count_result = self.get_page_total_count()
+
+        result = []
+        for page_current in range(1, page_count_result + 1):
+            fetcher_result: list = self.get_courses_from_page_current(page_current)
+            result.append(fetcher_result)
+
+        return result
+
+    def get_courses_from_mul_params(self, params_list):
+        result = []
+        for params in params_list:
+            self.config.set_params(params)
+            temp = self.get_all_courses_from_all_page()
+            result += temp
+        return result
 
     def _courses_format(self, raw_courses_list):
         if not raw_courses_list:
@@ -52,13 +75,12 @@ class CourseFetcher:
                 courses_list[-1].add_class_time(raw_courses[class_time_index])
             else:
                 courses_list.append(
-                    Course(raw_courses[0],raw_courses[1],raw_courses[2],raw_courses[3],raw_courses[4],
-                           raw_courses[5],raw_courses[6],raw_courses[7],raw_courses[8],raw_courses[9],
-                           raw_courses[10],raw_courses[11],raw_courses[12],raw_courses[13],raw_courses[14],
+                    Course(raw_courses[0], raw_courses[1], raw_courses[2], raw_courses[3], raw_courses[4],
+                           raw_courses[5], raw_courses[6], raw_courses[7], raw_courses[8], raw_courses[9],
+                           raw_courses[10], raw_courses[11], raw_courses[12], raw_courses[13], raw_courses[14],
                            raw_courses[15])
                 )
         return courses_list
-
 
     def _get_raw_courses_list(self, raw_html=None):
         cell_attrs = {'style': ''}

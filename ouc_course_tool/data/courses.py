@@ -1,7 +1,3 @@
-import urllib
-from urllib.parse import quote, quote_from_bytes
-
-
 class FetcherParams:
 
     def __init__(self, initQry="0", xktype="2", xh="230000000", xn="2024", xq="1", nj="2023", zydm="0150", items="",
@@ -25,6 +21,7 @@ class FetcherParams:
         :param sel_kc: 搜索关键字
         :param kcmc: 一般为空
         """
+        self._sel_kc = None
 
         self.initQry = initQry
         self.xktype = xktype
@@ -40,7 +37,7 @@ class FetcherParams:
         self.sel_zydm = sel_zydm
         self.sel_schoolarea = sel_schoolarea
         self.sel_cddwdm = sel_cddwdm
-        self.sel_kc = sel_kc.encode('GB2312')
+        self.set_sel_kc(sel_kc)
         self.kcmc = kcmc
 
     def __repr__(self):
@@ -48,7 +45,10 @@ class FetcherParams:
                 f"xn='{self.xn}', xq={self.xq}, nj='{self.nj}', zydm='{self.zydm}', "
                 f"items='{self.items}', xnxq='{self.xnxq}', kcfw='{self.kcfw}', "
                 f"sel_nj='{self.sel_nj}', sel_zydm='{self.sel_zydm}', sel_schoolarea='{self.sel_schoolarea}', "
-                f"sel_cddwdm='{self.sel_cddwdm}', sel_kc='{self.sel_kc}', kcmc='{self.kcmc}')")
+                f"sel_cddwdm='{self.sel_cddwdm}', sel_kc='{self._sel_kc}', kcmc='{self.kcmc}')")
+
+    def set_sel_kc(self, sel_kc):
+        self._sel_kc = sel_kc.encode('GB2312')
 
     def to_dict(self):
         return {
@@ -66,7 +66,7 @@ class FetcherParams:
             "sel_zydm": self.sel_zydm,
             "sel_schoolarea": self.sel_schoolarea,
             "sel_cddwdm": self.sel_cddwdm,
-            "sel_kc": self.sel_kc,
+            "sel_kc": self._sel_kc,
             "kcmc": self.kcmc
         }
 
