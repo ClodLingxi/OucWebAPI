@@ -1,7 +1,7 @@
+import pickle
 import unittest
 
-from jupyter_server.utils import fetch
-
+import tests.test_schedule
 from config import FetcherConfig
 from config import LoginConfig
 from core import search_param_handle
@@ -70,18 +70,20 @@ class TestCourseFechter(unittest.TestCase):
 
     def test_mul_fetcher(self):
         target_course = [
-            # '概率-公共',
-            # '形势与政策-公共',
-            # '毛泽东思想-公共',
-            # '离散数学-智能科学-2023',
-            # '计算机系统基础-智能科学-2023',
-            # '大学生职业发展教育-智能科学-2023',
+            '概率-公共',
+            '形势与政策-公共',
+            '毛泽东思想-公共',
+            '离散数学-智能科学-2023',
+            '计算机系统基础-智能科学-2023',
+            '大学生职业发展教育-智能科学-2023',
             '人工智能导论-智能科学-2022',
-            '计算机图形学-智能科学-2022',
+            # '计算机图形学-智能科学-2022',
         ]
         select_params = search_param_handle.search_param_handle(target_course, 3, '2024-1')
         result = self.fetcher.get_courses_from_mul_params(select_params)
-        for courses_list in result:
-            print(courses_list[0].course_name)
-            for course in courses_list:
-                print(course)
+
+        with open('get_courses_from_mul_params.pickle', 'wb') as file:
+            pickle.dump(result, file)
+
+        test_module = tests.test_schedule.MyTestCase()
+        test_module.test_something(limit=True)
