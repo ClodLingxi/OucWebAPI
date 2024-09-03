@@ -1,7 +1,4 @@
-from symtable import Function
 from typing import Callable
-
-from PIL.Image import preinit
 
 from data import Course, ScheduleFormat
 
@@ -26,7 +23,7 @@ class CourseTable:
     def print_courses(self):
         for selected_course in self.selected_courses:
             print(selected_course.course_name.split(']')[1])
-            print(selected_course.selection_number, selected_course.get_class_time_list())
+            print(selected_course.selection_number, selected_course.instructor)
             print()
 
     @staticmethod
