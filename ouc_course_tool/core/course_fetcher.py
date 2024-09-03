@@ -1,6 +1,6 @@
 from logging import Logger
-from msilib.schema import tables
 
+import re
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,7 +17,18 @@ class CourseFetcher:
         return result.text
 
     def get_page_total_count(self, raw_html=None):
-        pass
+        self.config.set_page_current()
+
+        if raw_html is None:
+            raw_html = self.get_raw_html_request()
+        soup = BeautifulSoup(raw_html, 'html.parser')
+        pagination_div = soup.find('div', {'class': 'pagination'})
+        if pagination_div is None:
+            return None
+        reload_script = pagination_div.find_all('script')[1]
+        match = re.search(r'\breloadPage\(.+?,(\d+),\d+\);', str(reload_script))
+        return int(str(reload_script)[match.start(1)])
+
 
 
     def get_courses(self, page_current=1, raw_html=None):
