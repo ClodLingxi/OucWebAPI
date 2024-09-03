@@ -3,7 +3,6 @@ from logging import Logger
 import re
 import requests
 from bs4 import BeautifulSoup
-from jupyter_events.validators import resources
 
 from ouc_course_tool.config import FetcherConfig
 from ouc_course_tool.data import Course
@@ -49,27 +48,32 @@ class CourseFetcher:
                                params=param, timeout=(10, 10)).json()
         return result
 
-    def get_courses_from_page_current(self, page_current=1, raw_html=None):
+    def _get_courses_from_page_current(self, page_current=1, raw_html=None):
         self.config.set_page_current(page_current)
 
         raw_courses_list = self._get_raw_courses_list(raw_html)
         return self._courses_format(raw_courses_list)
 
-    def get_all_courses_from_all_page(self):
+    def _get_all_courses_from_all_page(self):
         page_count_result = self._get_page_total_count()
 
         result = []
         for page_current in range(1, page_count_result + 1):
-            fetcher_result: list = self.get_courses_from_page_current(page_current)
+            fetcher_result: list = self._get_courses_from_page_current(page_current)
             result.append(fetcher_result)
 
+        return result
+
+    def get_courses_by_params(self, params=None):
+        self.config.set_params(params)
+        result = self._get_courses_from_page_current()
         return result
 
     def get_courses_from_mul_params(self, params_list):
         result = []
         for params in params_list:
             self.config.set_params(params)
-            temp = self.get_all_courses_from_all_page()
+            temp = self._get_all_courses_from_all_page()
             result += temp
         return result
 

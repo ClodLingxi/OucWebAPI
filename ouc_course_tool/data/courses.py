@@ -39,7 +39,7 @@ class FetcherParams:
         self.sel_zydm = sel_zydm
         self.sel_schoolarea = sel_schoolarea
         self.sel_cddwdm = sel_cddwdm
-        self.set_sel_kc(sel_kc)
+        self.set_keyword(sel_kc)
         self.kcmc = kcmc
 
     def __repr__(self):
@@ -49,7 +49,7 @@ class FetcherParams:
                 f"sel_nj='{self.sel_nj}', sel_zydm='{self.sel_zydm}', sel_schoolarea='{self.sel_schoolarea}', "
                 f"sel_cddwdm='{self.sel_cddwdm}', sel_kc='{self._sel_kc}', kcmc='{self.kcmc}')")
 
-    def set_sel_kc(self, sel_kc):
+    def set_keyword(self, sel_kc):
         self._sel_kc = sel_kc.encode('GB2312')
 
     def to_dict(self):
