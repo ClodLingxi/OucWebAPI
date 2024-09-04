@@ -32,7 +32,10 @@ def draw_course_table(course_list: list[Course]):
 
     # 绘制每门课程的块
     for i, temp_course in enumerate(course_list):
-        course_name = temp_course.course_name.split(']')[1]
+        if ']' in temp_course.course_name:
+            course_name = temp_course.course_name.split(']')[1]
+        else:
+            course_name = temp_course.course_name
         if len(course_name) > 6:
             course_name = course_name[:6] + "..."
         color = colors[i]  # 为每个课程分配一种颜色
