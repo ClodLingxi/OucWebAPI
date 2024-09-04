@@ -1,6 +1,6 @@
 import re
 
-class FetcherParams:
+class CourseFetcherParams:
 
     def __init__(self, initQry="0", xktype="2", xh="230000000", xn="2024", xq="1", nj="2023", zydm="0150", items="",
                  xnxq="2024-1", kcfw="Specialty",
@@ -72,6 +72,103 @@ class FetcherParams:
             "kcmc": self.kcmc
         }
 
+class TableFetcherParams:
+    def __init__(
+        self,
+        xh: str = "23000010000", # 重要 学号
+        electiveCourseForm_xktype: str = "2",
+        electiveCourseForm_xn: str = "",
+        electiveCourseForm_xq: str = "",
+        electiveCourseForm_xh: str = "",
+        electiveCourseForm_nj: str = "2022",
+        electiveCourseForm_zydm: str = "0143",
+        xqdm: str = "3",
+        electiveCourseForm_kcdm: str = "",
+        electiveCourseForm_kclb1: str = "",
+        electiveCourseForm_kclb2: str = "",
+        electiveCourseForm_khfs: str = "",
+        electiveCourseForm_skbjdm: str = "",
+        electiveCourseForm_xf: str = "",
+        electiveCourseForm_is_buy_book: str = "",
+        electiveCourseForm_is_cx: str = "",
+        electiveCourseForm_is_yxtj: str = "",
+        electiveCourseForm_xk_points: str = "",
+        xn: str = "2024",
+        xn1: str = "",
+        _xq: str = "",
+        xq_m: str = "1",
+        xq: str = "1",
+        kcdm: str = "",
+        zc: str = "",
+        electiveCourseForm_xkdetails: str = "",
+        hidOption: str = "",
+        xkh: str = "",
+        kcmc: str = "",
+        kcxf: str = "",
+        kkxq: str = "",
+        kcrkjs: str = "",
+        skfs: str = "",
+        xxyx: str = "",
+        sksj: str = "",
+        skdd: str = "",
+        point_total: str = "100",
+        point_used: str = "0",
+        point_canused: str = "100",
+        text_weight: str = "0",
+        ck_gmjc: str = "on",
+        ck_skbtj: str = "on"
+    ):
+        self.electiveCourseForm_xktype = electiveCourseForm_xktype
+        self.electiveCourseForm_xn = electiveCourseForm_xn
+        self.electiveCourseForm_xq = electiveCourseForm_xq
+        self.electiveCourseForm_xh = electiveCourseForm_xh
+        self.electiveCourseForm_nj = electiveCourseForm_nj
+        self.electiveCourseForm_zydm = electiveCourseForm_zydm
+        self.xqdm = xqdm
+        self.electiveCourseForm_kcdm = electiveCourseForm_kcdm
+        self.electiveCourseForm_kclb1 = electiveCourseForm_kclb1
+        self.electiveCourseForm_kclb2 = electiveCourseForm_kclb2
+        self.electiveCourseForm_khfs = electiveCourseForm_khfs
+        self.electiveCourseForm_skbjdm = electiveCourseForm_skbjdm
+        self.electiveCourseForm_xf = electiveCourseForm_xf
+        self.electiveCourseForm_is_buy_book = electiveCourseForm_is_buy_book
+        self.electiveCourseForm_is_cx = electiveCourseForm_is_cx
+        self.electiveCourseForm_is_yxtj = electiveCourseForm_is_yxtj
+        self.electiveCourseForm_xk_points = electiveCourseForm_xk_points
+        self.xn = xn
+        self.xn1 = xn1
+        self._xq = _xq
+        self.xq_m = xq_m
+        self.xq = xq
+        self.xh = xh
+        self.kcdm = kcdm
+        self.zc = zc
+        self.electiveCourseForm_xkdetails = electiveCourseForm_xkdetails
+        self.hidOption = hidOption
+        self.xkh = xkh
+        self.kcmc = kcmc
+        self.kcxf = kcxf
+        self.kkxq = kkxq
+        self.kcrkjs = kcrkjs
+        self.skfs = skfs
+        self.xxyx = xxyx
+        self.sksj = sksj
+        self.skdd = skdd
+        self.point_total = point_total
+        self.point_used = point_used
+        self.point_canused = point_canused
+        self.text_weight = text_weight
+        self.ck_gmjc = ck_gmjc
+        self.ck_skbtj = ck_skbtj
+
+    def __repr__(self):
+        return f"TableFetcherParams({self.__dict__})"
+
+    def to_dict(self):
+        return self.__dict__
+
+    def set_user_name(self, user_name):
+        self.xh = user_name
 
 class ScheduleFormat:
     def __init__(self, schedule_str):
@@ -131,9 +228,25 @@ class ScheduleFormat:
         return f"周次: {self.weeks} 星期: {self.day_of_week} ({self.start_period}-{self.end_period}节) {week_type}周"
 
 class Course:
-    def __init__(self, selection_number, course_name, campus, teaching_method, instructor, start_week, credits,
-                 total_hours, limit, selected_count, confirmed_count, class_time, class_location, syllabus,
-                 teaching_calendar, notes):
+    def __init__(
+            self,
+            selection_number=None,
+            course_name=None,
+            campus=None,
+            teaching_method=None,
+            instructor=None,
+            start_week=None,
+            credits=None,
+            total_hours=None,
+            limit=None,
+            selected_count=None,
+            confirmed_count=None,
+            class_time=None,
+            class_location=None,
+            syllabus=None,
+            teaching_calendar=None,
+            notes=None
+    ):
         """
         :param selection_number: 选课号
         :param course_name: 课程
@@ -184,7 +297,8 @@ class Course:
             f"syllabus='{self.syllabus}', teaching_calendar='{self.teaching_calendar}', notes='{self.notes}')")
 
     def add_class_time(self, class_time):
-        self.class_time.append(ScheduleFormat(class_time))
+        if class_time is not None:
+            self.class_time.append(ScheduleFormat(class_time))
 
     def get_class_time_list(self):
         return self.class_time

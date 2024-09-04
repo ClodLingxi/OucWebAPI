@@ -1,6 +1,6 @@
 from .config import LoginConfig
 from .core import AccountValidation
 
-from .config import FetcherConfig
+from .config import CourseFetcherConfig
 from .core import CourseFetcher
-from .data import FetcherParams
+from .data import CourseFetcherParams

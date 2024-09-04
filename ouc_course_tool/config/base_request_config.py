@@ -4,8 +4,9 @@ class BaseRequestConfig:
     _DEFAULT_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 
     def __init__(self, session_id, params, referer, base_url, user_agent=_DEFAULT_USER_AGENT):
+        self._params = None
         self._session_id = session_id
-        self._params: dict = params
+        self.set_params(params)
         self._referer = referer
         self._base_url = base_url
         self._user_agent = user_agent
@@ -23,12 +24,14 @@ class BaseRequestConfig:
         }
 
     def set_params_by_class(self, params):
-        self._params = params.to_dict()
+        if params is not None:
+            self._params = params.to_dict()
 
     def set_params(self, params):
-        if type(params) is not dict:
-            params = params.to_dict()
-        self._params = params
+        if params is not None:
+            if type(params) is not dict:
+                params = params.to_dict()
+            self._params = params
 
     def get_params(self):
         return self._params

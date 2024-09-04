@@ -19,7 +19,7 @@ if __name__ == '__main__':
     sel_zydm="0150" 代表选择的专业 为0150智能科学
     sel_schoolarea="3" 代表选择的校区 为西海岸校区
     """
-    fetcher_params = FetcherParams(
+    fetcher_params = CourseFetcherParams(
         xnxq="2024-1", kcfw="Specialty", sel_nj="2023", sel_zydm="0150", sel_schoolarea="3"
 
     ).to_dict()
@@ -30,11 +30,11 @@ if __name__ == '__main__':
     sel_schoolarea="3" 代表选择的校区 为西海岸校区
     sel_kc="概率统计" 关键词为“概率统计”
     """
-    fetcher_params2 = FetcherParams(
+    fetcher_params2 = CourseFetcherParams(
         xnxq="2024-1", kcfw="PublicBasic", sel_schoolarea="3", sel_kc="",
     ).to_dict()
 
-    fetcher_config = FetcherConfig(session_id=session_id, params=fetcher_params2)
+    fetcher_config = CourseFetcherConfig(session_id=session_id, params=fetcher_params2)
     course_fetcher = CourseFetcher(config=fetcher_config)
 
     page_count_result = course_fetcher._get_page_total_count()

@@ -1,1 +1,1 @@
-from .courses import FetcherParams, Course, ScheduleFormat
+from .courses import CourseFetcherParams, Course, ScheduleFormat

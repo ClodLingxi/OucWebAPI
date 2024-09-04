@@ -4,13 +4,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from ouc_course_tool.config import FetcherConfig
+from ouc_course_tool.config import CourseFetcherConfig
 from ouc_course_tool.data import Course
 
 
 class CourseFetcher:
     def __init__(self, config=None):
-        self.config: FetcherConfig = config
+        self.config: CourseFetcherConfig = config
         self.logger = Logger(self.__class__.__name__)
 
     def set_search_param(self, params):

@@ -114,12 +114,6 @@ class AccountValidation:
 
         return response.json(), session_id
 
-    """
-    {'initQry': '0', 'xktype': '2', 'xh': '230000000', 'xn': '2024', 'xq': '1', 'nj': '2023', 'zydm': 
-    '0150', 'items': '', 'xnxq': '2024-1', 'kcfw': 'PublicBasic', 'sel_nj': '2022', 'sel_zydm': '0150',
-     'sel_schoolarea': '3', 'sel_cddwdm': '', 'sel_kc': b'\xb8\xc5\xc2\xca', 'kcmc': ''}
-    """
-
     def get_login_session_id(self):
         time = self._MAX_LOGIN_TIME
         while time:

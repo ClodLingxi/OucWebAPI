@@ -1,9 +1,9 @@
-from ouc_course_tool import FetcherParams
+from ouc_course_tool import CourseFetcherParams
 
 def search_param_handle(course_list: list[str], campus, year_and_term):
     select_params_list = []
     for target in course_list:
-        params = FetcherParams(sel_schoolarea=campus, xnxq=year_and_term)
+        params = CourseFetcherParams(sel_schoolarea=campus, xnxq=year_and_term)
         if target.endswith('公共'):
             params.kcfw = 'PublicBasic'
             temp = target.split('-')
