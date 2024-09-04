@@ -1,0 +1,1 @@
+from draw_function import draw_course_table

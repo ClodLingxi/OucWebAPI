@@ -2,10 +2,14 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
 
+from data import Course
+
+# 指定中文字体
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体
+plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
+
+
 def draw_course_table(course_list: list[Course]):
-    # 指定中文字体
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体
-    plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
     # 定义一周的天数和每天的课程节次
     days = ['一', '二', '三', '四', '五', '六', '日']
     periods = list(map(lambda x: x - 1, list(range(1, 13))))  # 假设每天有 12 节课

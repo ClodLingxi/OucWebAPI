@@ -46,7 +46,9 @@ class CourseFetcher:
         }
         result = requests.post(self.config.id_base_url, headers=self.config.get_headers(),
                                params=param, timeout=(10, 10)).json()
-        return result
+        result_course = self._courses_format_from_json_list(result)
+        result_course.selection_number = selection_id
+        return result_course
 
     def _get_courses_from_page_current(self, page_current=1, raw_html=None):
         self.config.set_page_current(page_current)
@@ -76,6 +78,31 @@ class CourseFetcher:
             temp = self._get_all_courses_from_all_page()
             result += temp
         return result
+
+    @staticmethod
+    def _courses_format_from_json_list(json_list):
+        first_json = json_list[0]
+        result_course = Course(
+            course_name=first_json['kcmc'],
+            campus=first_json['xqmc'],
+            teaching_method=first_json['skfs'],
+            instructor=first_json['xm'],
+
+            start_week='',
+            credits=first_json['xf'],
+
+            limit=first_json['rs'].split('/')[0],
+            selected_count=first_json['rs'].split('/')[1],
+
+            class_time=first_json['sksj'],
+            class_location=first_json['fjbh'],
+        )
+
+        for index in range(1, len(json_list)):
+            result_course.add_class_time(json_list[index]['sksj'])
+
+        return result_course
+
 
     def _courses_format(self, raw_courses_list):
         if not raw_courses_list:
