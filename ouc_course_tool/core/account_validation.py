@@ -55,7 +55,7 @@ class AccountValidation:
         text = pytesseract.image_to_string(img)
         return text.strip()
 
-    def _get_raw_captcha_and_session_id(self):
+    def get_raw_captcha_and_session_id(self):
         offset = timedelta(hours=8)
         tz = timezone(offset, name="中国标准时间")
         now = datetime.now(tz)
@@ -72,7 +72,7 @@ class AccountValidation:
         recognize_time = self._MAX_RECOGNIZE_TIME
 
         while recognize_time:
-            raw_captcha, session_id = self._get_raw_captcha_and_session_id()
+            raw_captcha, session_id = self.get_raw_captcha_and_session_id()
             if raw_captcha.startswith('<!DOCTYPE html>'.encode('utf-8')):
                 return None, session_id
 
@@ -85,8 +85,9 @@ class AccountValidation:
 
         return None, None
 
-    def get_login_raw_result_and_session_id(self):
-        rand_number, session_id = self.get_rand_number_and_session_id()
+    def _get_login_raw_result_and_session_id(self, rand_number=None, session_id=None):
+        if rand_number is None or session_id is None:
+            rand_number, session_id = self.get_rand_number_and_session_id()
         if rand_number is None or session_id is None:
             return None, None
 
@@ -114,10 +115,10 @@ class AccountValidation:
 
         return response.json(), session_id
 
-    def get_login_session_id(self):
+    def get_login_session_id(self, rand_number=None, session_id=None):
         time = self._MAX_LOGIN_TIME
         while time:
-            result, session_id = self.get_login_raw_result_and_session_id()
+            result, session_id = self._get_login_raw_result_and_session_id(rand_number, session_id)
             message = result.get('message')
             if message == '操作成功!':
                 return session_id

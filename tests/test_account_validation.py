@@ -30,7 +30,7 @@ class TestAccountValidation(unittest.TestCase):
         print(encoded_username, hashed_password)
 
     def test_get_captcha_and_recognize(self):
-        captcha, _ = self.account_validation._get_raw_captcha_and_session_id()
+        captcha, _ = self.account_validation.get_raw_captcha_and_session_id()
         with open(self._CAPTCHA_TEMP_PATH, "wb") as file:
             file.write(captcha)
             file.close()
@@ -41,7 +41,7 @@ class TestAccountValidation(unittest.TestCase):
     def test_get_session_id(self):
         self.set_session_id()
 
-        _, session_id = self.account_validation._get_raw_captcha_and_session_id()
+        _, session_id = self.account_validation.get_raw_captcha_and_session_id()
         print(session_id)
 
     def test_get_rand_number_and_session_id(self):
@@ -51,11 +51,11 @@ class TestAccountValidation(unittest.TestCase):
     def test_login_raw_result_with_session_id(self):
         self.set_session_id()
 
-        result, session_id = self.account_validation.get_login_raw_result_and_session_id()
+        result, session_id = self.account_validation._get_login_raw_result_and_session_id()
         print("SESSION_ID: " + session_id, result)
 
     def test_login_raw_result_and_session_id(self):
-        result, session_id = self.account_validation.get_login_raw_result_and_session_id()
+        result, session_id = self.account_validation._get_login_raw_result_and_session_id()
         print(type(result), result, result.get('message'))
 
     def test_login(self):

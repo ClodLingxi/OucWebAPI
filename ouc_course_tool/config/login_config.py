@@ -7,7 +7,7 @@ class LoginConfig(BaseRequestConfig):
     _DEFAULT_BASE_URL = "http://jwgl.ouc.edu.cn/cas/logon.action"
     _DEFAULT_CAPTCHA_URL = "http://jwgl.ouc.edu.cn/cas/genValidateCode"
 
-    def __init__(self, username, password, tesseract_path, session_id=None, params=None, referer=_DEFAULT_REFERER, base_url=_DEFAULT_BASE_URL):
+    def __init__(self, username, password, tesseract_path=None, session_id=None, params=None, referer=_DEFAULT_REFERER, base_url=_DEFAULT_BASE_URL):
         super(LoginConfig, self).__init__(session_id, params, referer, base_url)
         self._username = username
         self._password = password
