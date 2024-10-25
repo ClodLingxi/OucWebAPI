@@ -180,9 +180,11 @@ class ScheduleFormat:
 
     def _parse_schedule(self, schedule_str):
         # 解析周次
-        weeks_match = re.search(r'(\d+-\d+)周', schedule_str)
-        weeks_str = weeks_match.group(1) if weeks_match else ''
-        weeks = self._parse_weeks(weeks_str)
+        weeks = []
+        week_pattern = r'(\d+(?:-\d+)?)(?![^(]*\))'
+        weeks_match = re.findall(week_pattern, schedule_str)
+        for week in weeks_match:
+            weeks += self._parse_weeks(str(week))
 
         # 解析星期几
         day_of_week_match = re.search(r'([一二三四五六日])\(', schedule_str)
@@ -206,7 +208,10 @@ class ScheduleFormat:
     def _parse_weeks(weeks_str):
         if weeks_str == "":
             return list(range(1, 20))
-        start_week, end_week = map(int, weeks_str.split('-'))
+        if '-' in weeks_str:
+            start_week, end_week = map(int, weeks_str.split('-'))
+        else:
+            start_week, end_week = int(weeks_str), int(weeks_str)
         return list(range(start_week, end_week + 1))
 
     def conflicts_with(self, other):

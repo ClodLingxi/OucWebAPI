@@ -16,6 +16,24 @@ class TestCourseFechter(unittest.TestCase):
     _TEST_FILE = "test_resource/test_course_result.html"
     _tesseract_cmd_path = 'D:/Tools/Tesseract/tesseract.exe'
     _TEST_SESSION_ID = "F1072C84F4778E07E81A0EA90ED123FB"
+    _TEST_TEMP = '''
+    {
+    'zc':"1-17'，'sksj':·1-17周三(3-4节)"，'xm""唐瑞春"，'dyrkjs':'t0001118''3'，'fibh':*南489/410(94)'，
+    "kcdm':'888583101221'，'xkrssx’:55,'skfs’:"讲授"，'adrs':85,'xqmc':'西海岸校区''rs':'55/85'，'kcmc':·计算机网络''khfs':'1'。'xf':'3.5'
+    }
+    ,
+    {
+    'zc':'1-5,7-17'，'sksj':'1-5,7-17周五(7-8节)'，'xm':'唐瑞春'，'dyrkjs':'t0001118"，'kclb2':'03','fjbh':'南404/403(131)',
+    'kcdm':'080503101221'，'xkrssx':5"is kxcx':"日'，"Kc1b1':"01'.5，'skfs':'讲授''adrs':85、'xamc':'西海岸校区''rs':'55/85'、'kcmc'
+    :'计算机网络','khfs':'1','xf':'3.5'
+    }，
+    {
+    'zc':'14'，'sksj':'14周五(7-8节)双'，'xm':'唐瑞春'，'dyrkis':'t8801118','is kxcx':'@’，
+    'kclb1':'81'，'kclb2':'83'，'fibh':'kcdm':'088583101221'，'xkrssx':55,'skfs':'讲授’，'qdrs':85,'xgmc":'西海岸校区'，'rs':'55/85'
+    ，'kc'南404/403(131)'c':'计算机网络''khfs':'1'，'xf':'3.5'
+    }
+    ]
+    '''
     _QUERY_PARAM = CourseFetcherParams(
         initQry=0, xktype=2, xh="", xn="2024", xq=0, nj="2022", zydm="0143",
         items="", xnxq="2024-0", kcfw="Specialty", sel_nj="2022", sel_zydm="0143",
